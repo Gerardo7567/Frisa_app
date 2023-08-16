@@ -9,6 +9,17 @@ st.title(' :man-woman-boy-boy: 	:earth_americas: Fundacion Frisa')
 st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow_html=True)
 
 fl = st.file_uploader(':file uploader: Sube un archivo',type=(["csv","txt","xlsx","xls"]))
+sidebar = st.sidebar
+@st.cache
+def load_data():
+    df = pd.read_csv(filename)
+    return df
+df = load_data()
+
+st.header("Dataset")
+agree = sidebar.checkbox("Quieres ver la base de datos ? ")
+if agree:
+    st.dataframe(df)
 
 if fl is not None:
     filename = fl.name
