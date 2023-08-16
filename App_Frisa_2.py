@@ -42,3 +42,8 @@ if add_data:
     df.to_csv('Prueba_de_datos.csv',index=False)
 st.header('Archivo Actualizado')
 st.write(df)
+
+if not df.empty:
+    csv_filename = 'Prueba_de_datos_actualizado.csv'
+    csv_data = df.to_csv(index=False)
+    st.download_button(label="Descargar CSV Actualizado", data=csv_data, file_name=csv_filename)
