@@ -11,27 +11,43 @@ st.set_page_config(page_title='Fundacion Frisa',page_icon=':man-woman-boy-boy:',
 st.title(' :man-woman-boy-boy: 	:earth_americas: Fundacion Frisa')
 st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow_html=True)
 
+fl = st.file_uploader(':file uploader: Sube un archivo',type=(["csv","txt","xlsx","xls"]))
 
-df = pd.read_csv('Prueba_de_datos.csv')
+if fl is not None:
+    filename = fl.name
+    st.write(filename)
+    df = pd.read_csv(filename)
+else:
+    #Nombre del archivo dentro del GitHub
+    df = pd.read_csv('Prueba_de_datos.csv')
+
 st.header('Archivo existente')
 st.write(df)
 
-st.sidebar.header('Opciones')
-options_form = st.sidebar.form('options_form')
-# Crear los espacios para subor los datos
-user_name = options_form.text_input("Nombre")
-user_flastname = options_form.text_input("Apellido paterno")
-user_slastname = options_form.text_input("Apellido materno")
-user_mail = options_form.text_input("Correo Electronico")
-user_phone = options_form.text_input("Telefono")
-user_type = options_form.text_input("Convocatoria")
-add_data = options_form.form_submit_button()
-if add_data:
-    #cada variable nueva con la columna donde ira
-    new_data = {'Nombre': user_name,"Apellido paterno":user_flastname,"Apellido materno":user_slastname,
-                "Correo Electronico":user_mail,"Telefono":int(user_phone),"Convocatoria":user_type}
-    #df = df.append(pd.Series([new_data],columns=df.columns))
-    #df = pd.concat([new_data,df.loc[:]]).reset_index(drop=True)
-    df = df.append(new_data, ignore_index=True)
-    #Nombre del archivo dentro del GitHub para actualizarlo
-    df.to_csv('Prueba_de_datos.csv',index=False)
+name_label = 'Nombre'
+flastname_label = 'Apellido Paterno'
+slastname_label = 'Apellido Materno'
+mail_label = 'Correo Electronico'
+phone_label = 'Telefono'
+type_label = 'Convocatoria'
+button_label = 'Submit'
+
+with st.sidebar:
+    form = st.form(key='form1',clear_on_submit=True)
+    add_name = form.text_input(label=f"{name_label}",value="input 1 name")
+    add_flastname = form.text_input(label=f"{flastname_label}")
+    add_slastname = form.text_input(label=f"{slastname_label}")
+    add_mail = form.text_input(label=f"{mail_label}")
+    add_phone = form.text_input(label=f"{phone_label}")
+    add_type = form.text_input(label=f"{type_label}")
+    button_press = form.form_submit_button(label=f"{button_label}")
+
+    if button_press:
+        new_data = {'Nombre':add_name,'Apellido Paterno':add_flastname,'Apellido Materno':add_slastname,
+                    'Correo Electronico':add_mail,'Telefono':add_phone,'Convocatoria':add_type}
+        df = df.append(new_data, ignore_index=True)
+        df.to_csv('Prueba_de_datos.csv',index=False)
+    else:
+        st.write(f'Por favor llena todos los campos')
+
+st.write(df)
