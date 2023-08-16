@@ -3,8 +3,6 @@ import streamlit as st
 import pandas as pd
 import warnings
 
-warnings.filterwarnings('ignore')
-
 st.set_page_config(page_title='Fundacion Frisa',page_icon=':man-woman-boy-boy:',layout='wide')
 
 st.title(' :man-woman-boy-boy: 	:earth_americas: Fundacion Frisa')
