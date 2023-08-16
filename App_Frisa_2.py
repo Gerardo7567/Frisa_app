@@ -40,4 +40,4 @@ if add_data:
                 "Correo Electronico":user_mail,"Telefono":user_phone,"Convocatoria":user_type}
     df = df.append(new_data, ingnore_index=True)
     #Nombre del archivo dentro del GitHub para actualizarlo
-    df.to_csv('Prueva_de_datos.csv')
+    df.to_csv('Prueva_de_datos.csv',index=False)
