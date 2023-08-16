@@ -15,7 +15,7 @@ fl = st.file_uploader(':file uploader: Sube un archivo',type=(["csv","txt","xlsx
 
 if fl is not None:
     filename = fl.name
-    st.write(filename)
+    #st.write(filename)
     df = pd.read_csv(filename)
 #else:
     #Nombre del archivo dentro del GitHub
@@ -44,11 +44,10 @@ with st.sidebar:
 
     if button_press:
         new_data = {'Nombre':add_name,'Apellido Paterno':add_flastname,'Apellido Materno':add_slastname,
-                    'Correo Electronico':add_mail,'Telefono':add_phone,'Convocatoria':add_type}
+                    'Correo Electronico':add_mail,'Telefono':int(add_phone),'Convocatoria':add_type}
         new_row = pd.Series(new_data)
         #df.append(new_row, ignore_index=True)
         df.loc[len(df)] = new_data
         #Nombre del archivo dentro del GitHub para actualizarlo
         df.to_csv('Prueba_de_datos.csv',index=False)
-
-st.write(df)
+        st.write(df)
