@@ -11,16 +11,8 @@ st.set_page_config(page_title='Fundacion Frisa',page_icon=':man-woman-boy-boy:',
 st.title(' :man-woman-boy-boy: 	:earth_americas: Fundacion Frisa')
 st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow_html=True)
 
-fl = st.file_uploader(':file uploader: Sube un archivo',type=(["csv","txt","xlsx","xls"]))
 
-if fl is not None:
-    filename = fl.name
-    st.write(filename)
-    df = pd.read_csv(filename)
-else:
-    #Nombre del archivo dentro del GitHub
-    df = pd.read_csv('Prueba_de_datos.csv')
-
+df = pd.read_csv('Prueba_de_datos.csv')
 st.header('Archivo existente')
 st.write(df)
 
