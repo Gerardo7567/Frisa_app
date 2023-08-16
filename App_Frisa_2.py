@@ -22,7 +22,7 @@ if fl is not None:
     #df = pd.read_csv('Prueba_de_datos.csv')
 
 st.header('Archivo existente')
-#st.write(df)
+st.write(df)
 
 st.sidebar.header('Opciones')
 options_form = st.sidebar.form('options_form')
