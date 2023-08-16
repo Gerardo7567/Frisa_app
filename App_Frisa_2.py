@@ -19,7 +19,7 @@ if fl is not None:
     df = pd.read_csv(filename)
 else:
     #Nombre del archivo dentro del GitHub
-    df = pd.read_csv('Prueva_de_datos.csv')
+    df = pd.read_csv('Prueba_de_datos.csv')
 
 st.header('Archivo existente')
 st.write(df)
@@ -37,7 +37,7 @@ add_data = options_form.form_submit_button()
 if add_data:
     #cada variable nueva con la columna donde ira
     new_data = {'Nombre': user_name,"Apellido paterno":user_flastname,"Apellido materno":user_slastname,
-                "Correo Electronico":user_mail,"Telefono":user_phone,"Convocatoria":user_type}
+                "Correo Electronico":user_mail,"Telefono":int(user_phone),"Convocatoria":user_type}
     df = df.append(new_data, ignore_index=True)
     #Nombre del archivo dentro del GitHub para actualizarlo
-    df.to_csv('Prueva_de_datos.csv',index=False)
+    df.to_csv('Prueba_de_datos.csv',index=False)
