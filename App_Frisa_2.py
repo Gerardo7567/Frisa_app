@@ -10,7 +10,6 @@ st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow
 
 fl = st.file_uploader(':file uploader: Sube un archivo',type=(["csv","txt","xlsx","xls"]))
 
-
 if fl is not None:
     filename = fl.name
     #st.write(filename)
