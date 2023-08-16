@@ -17,9 +17,9 @@ if fl is not None:
     filename = fl.name
     st.write(filename)
     df = pd.read_csv(filename)
-else:
+#else:
     #Nombre del archivo dentro del GitHub
-    df = pd.read_csv('Prueba_de_datos.csv')
+    #df = pd.read_csv('Prueba_de_datos.csv')
 
 st.header('Archivo existente')
 #st.write(df)
