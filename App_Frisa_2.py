@@ -40,4 +40,5 @@ if add_data:
     df.loc[len(df)] = new_data
     #Nombre del archivo dentro del GitHub para actualizarlo
     df.to_csv('Prueba_de_datos.csv',index=False)
+st.header('Archivo Actualizado')
 st.write(df)
