@@ -24,30 +24,23 @@ if fl is not None:
 st.header('Archivo existente')
 #st.write(df)
 
-name_label = 'Nombre'
-flastname_label = 'Apellido Paterno'
-slastname_label = 'Apellido Materno'
-mail_label = 'Correo Electronico'
-phone_label = 'Telefono'
-type_label = 'Convocatoria'
-button_label = 'Submit'
-
-with st.sidebar:
-    form = st.form(key='form1',clear_on_submit=True)
-    add_name = form.text_input(label=f"{name_label}",value="input 1 name")
-    add_flastname = form.text_input(label=f"{flastname_label}")
-    add_slastname = form.text_input(label=f"{slastname_label}")
-    add_mail = form.text_input(label=f"{mail_label}")
-    add_phone = form.text_input(label=f"{phone_label}")
-    add_type = form.text_input(label=f"{type_label}")
-    button_press = form.form_submit_button(label=f"{button_label}")
-
-    if button_press:
-        new_data = {'Nombre':add_name,'Apellido Paterno':str(add_flastname),'Apellido Materno':str(add_slastname),
-                    'Correo Electronico':add_mail,'Telefono':int(add_phone),'Convocatoria':str(add_type)}
-        new_row = pd.Series(new_data)
-        #df.append(new_row, ignore_index=True)
-        df.loc[len(df)] = new_data
-        #Nombre del archivo dentro del GitHub para actualizarlo
-        df.to_csv('Prueba_de_datos.csv',index=False)
+st.sidebar.header('Opciones')
+options_form = st.sidebar.form('options_form')
+# Crear los espacios para subor los datos
+user_name = options_form.text_input("Nombre")
+user_flastname = options_form.text_input("Apellido paterno")
+user_slastname = options_form.text_input("Apellido materno")
+user_mail = options_form.text_input("Correo Electronico")
+user_phone = options_form.text_input("Telefono")
+user_type = options_form.text_input("Convocatoria")
+add_data = options_form.form_submit_button()
+if add_data:
+    #cada variable nueva con la columna donde ira
+    new_data = {'Nombre': user_name,"Apellido paterno":user_flastname,"Apellido materno":user_slastname,
+                "Correo Electronico":user_mail,"Telefono":int(user_phone),"Convocatoria":user_type}
+    new_row = pd.Series(new_data)
+    #df.append(new_row, ignore_index=True)
+    df.loc[len(df)] = new_data
+    #Nombre del archivo dentro del GitHub para actualizarlo
+    df.to_csv('Prueba_de_datos.csv',index=False)
 st.write(df)
