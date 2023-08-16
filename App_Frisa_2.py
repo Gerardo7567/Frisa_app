@@ -13,6 +13,7 @@ st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow
 
 
 df = pd.read_csv('Prueba_de_datos.csv')
+df = pd.DataFrame(df)
 st.header('Archivo existente')
 st.write(df)
 
