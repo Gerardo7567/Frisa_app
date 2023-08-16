@@ -45,9 +45,10 @@ with st.sidebar:
     if button_press:
         new_data = {'Nombre':add_name,'Apellido Paterno':add_flastname,'Apellido Materno':add_slastname,
                     'Correo Electronico':add_mail,'Telefono':add_phone,'Convocatoria':add_type}
-        df = df.append(new_data, ignore_index=True)
+        new_row = pd.Series(new_data)
+        #df.append(new_row, ignore_index=True)
+        df.loc[len(df)] = new_data
+        #Nombre del archivo dentro del GitHub para actualizarlo
         df.to_csv('Prueba_de_datos.csv',index=False)
-    else:
-        st.write(f'Por favor llena todos los campos')
 
 st.write(df)
