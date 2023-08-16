@@ -22,7 +22,7 @@ else:
     df = pd.read_csv('Prueba_de_datos.csv')
 
 st.header('Archivo existente')
-st.write(df)
+#st.write(df)
 
 name_label = 'Nombre'
 flastname_label = 'Apellido Paterno'
