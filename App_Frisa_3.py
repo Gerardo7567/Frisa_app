@@ -70,6 +70,7 @@ def Ingresar_datos():
     with open("progress.txt", "w") as f:
             f.truncate()
             f.write(f"{button_press}")
+    st.write(df)
 
 
 page_names_to_funcs = {
