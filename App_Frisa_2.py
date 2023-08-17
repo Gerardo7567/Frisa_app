@@ -33,8 +33,8 @@ user_type = options_form.text_input("Convocatoria")
 add_data = options_form.form_submit_button()
 if add_data:
     #cada variable nueva con la columna donde ira
-    new_data = {'Nombre': user_name,"Apellido paterno":user_flastname,"Apellido materno":user_slastname,
-                "Correo Electronico":user_mail,"Telefono":int(user_phone),"Tipo de Convocatoria":user_type}
+    new_data = {'Nombre': str(user_name),"Apellido paterno":str(user_flastname),"Apellido materno":str(user_slastname),
+                "Correo Electronico":str(user_mail),"Telefono":int(user_phone),"Tipo de Convocatoria":str(user_type)}
     new_row = pd.Series(new_data)
     #df.append(new_row, ignore_index=True)
     df.loc[len(df)] = new_data
