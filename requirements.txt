@@ -2,4 +2,4 @@ streamlit
 plotly
 pandas
 numpy
-csv
+csv==0.0.13
