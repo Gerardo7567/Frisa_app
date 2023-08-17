@@ -36,12 +36,11 @@ def Ingresar_datos():
         results_df.at[button_press, 'location_visited'] = location_visited
         results_df.to_csv('bike_to_work.csv', index=None)
         return None
-    
+    fl = st.file_uploader(':file uploader: Sube un archivo',type=(["csv","txt","xlsx","xls"]))
     @st.cache
     def load_data():
         # If this is your first run, create an empty csv file with
         # columns kms_biked and location_visited        
-        fl = st.file_uploader(':file uploader: Sube un archivo',type=(["csv","txt","xlsx","xls"]))
         if fl is not None:
             filename = fl.name
             #st.write(filename)
