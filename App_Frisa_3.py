@@ -65,7 +65,7 @@ def Ingresar_datos():
     user_mail = options_form.text_input("Correo Electronico")
     user_phone = options_form.number_input("Telefono")
     user_type = options_form.text_input("Tipo de Convocatoria")
-    if st.button("Save your information"):
+    if st.form_submit_button("Save your information"):
         save_results(results_df, button_press, user_name, user_flastname,user_slastname,user_mail,user_phone,user_type)
     # track which row of results_df to write to
     with open("progress.txt", "w") as f:
