@@ -44,5 +44,5 @@ if add_data:
     df = pd.DataFrame(df)
 if not df.empty:
     csv_filename = 'Prueba_de_datos_actualizado.csv'
-    csv_data = df.to_csv(index=False,encoding = 'ISO-8859-1')
+    csv_data = df.to_csv(index=False,encoding = 'latin1')
     st.download_button(label="Descargar CSV Actualizado", data=csv_data, file_name=csv_filename)
