@@ -31,7 +31,7 @@ def Ingresar_datos():
     st.markdown(f"# {list(page_names_to_funcs.keys())[1]}")
 
 
-    def save_results(results_df, button_press, kms_biked, location_visited):
+    def save_results(results_df, button_press, user_name, user_flastname,user_slastname,user_mail,user_phone,user_type):
         results_df.at[button_press, 'Nombre'] = user_name
         results_df.at[button_press, 'Apellido paterno'] = user_flastname
         results_df.at[button_press, 'Apellido materno'] = user_slastname
