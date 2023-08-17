@@ -72,9 +72,9 @@ def Ingresar_datos():
             f.truncate()
             f.write(f"{button_press}")
     st.write(results_df)
-    if not df.empty:
+    if not results_df.empty:
         csv_filename = 'Prueba_de_datos_actualizado.csv'
-        csv_data = df.to_csv(index=False,encoding = 'latin1')
+        csv_data = results_df.to_csv(index=False,encoding = 'latin1')
         st.download_button(label="Descargar CSV Actualizado", data=csv_data, file_name=csv_filename)
 
 
