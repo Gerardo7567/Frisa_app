@@ -38,7 +38,7 @@ def Ingresar_datos():
         results_df.at[button_press, 'Correo Electronico'] = user_mail
         results_df.at[button_press, 'Telefono'] = user_phone
         results_df.at[button_press, 'Tipo de Convocatoria'] = user_type
-        results_df.to_csv('Prueba_de_datos_new.csv', index=None)
+        results_df.to_csv('Prueba_de_datos.csv', index=None)
         return None
     fl = st.file_uploader(':file uploader: Sube un archivo',type=(["csv","txt","xlsx","xls"]))
     @st.cache
