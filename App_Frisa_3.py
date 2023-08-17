@@ -47,6 +47,11 @@ def Ingresar_datos():
             #st.write(filename)
             df = pd.read_csv(filename)
         return df
+    results_df = load_data()
+
+    with open("progress.txt", "r") as f:
+        button_press = f.readline()  # starts as a string
+        button_press = 0 if button_press == "" else int(button_press)
 
     options_form = st.form('options_form')
     # Crear los espacios para subor los datos
@@ -54,13 +59,15 @@ def Ingresar_datos():
     user_flastname = options_form.text_input("Apellido paterno")
     user_slastname = options_form.text_input("Apellido materno")
     user_mail = options_form.text_input("Correo Electronico")
-    user_phone = options_form.text_input("Telefono")
+    user_phone = options_form.number_input("Telefono")
     user_type = options_form.text_input("Convocatoria")
-    add_data = options_form.form_submit_button()
-    if not df.empty:
-        csv_filename = 'Prueba_de_datos_actualizado.csv'
-        csv_data = df.to_csv(index=False,encoding = 'latin1')
-        st.download_button(label="Descargar CSV Actualizado", data=csv_data, file_name=csv_filename)
+    if st.button("Save your information"):
+        button_press += 1
+        save_results(results_df, button_press, kms_biked, location_visited)
+    # track which row of results_df to write to
+    with open("progress.txt", "w") as f:
+            f.truncate()
+            f.write(f"{button_press}")
 
 
 page_names_to_funcs = {
