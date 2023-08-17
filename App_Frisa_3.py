@@ -54,7 +54,7 @@ def Ingresar_datos():
 
     with open("progress.txt", "r") as f:
         button_press = f.readline()  # starts as a string
-        button_press = 0 if button_press == "" else int(button_press)
+        
 
     options_form = st.form('options_form')
     # Crear los espacios para subor los datos
