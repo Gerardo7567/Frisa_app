@@ -30,14 +30,25 @@ def Ingresar_datos():
 
     st.markdown(f"# {list(page_names_to_funcs.keys())[1]}")
 
-    fl = st.file_uploader(':file uploader: Sube un archivo',type=(["csv","txt","xlsx","xls"]))
 
-    if fl is not None:
-        filename = fl.name
-        #st.write(filename)
-        df = pd.read_csv(filename)
-    st.sidebar.header('Opciones')
-    options_form = st.sidebar.form('options_form')
+    def save_results(results_df, button_press, kms_biked, location_visited):
+        results_df.at[button_press, 'kms_biked'] = kms_biked
+        results_df.at[button_press, 'location_visited'] = location_visited
+        results_df.to_csv('bike_to_work.csv', index=None)
+        return None
+    
+    @st.cache
+    def load_data():
+        # If this is your first run, create an empty csv file with
+        # columns kms_biked and location_visited        
+        fl = st.file_uploader(':file uploader: Sube un archivo',type=(["csv","txt","xlsx","xls"]))
+        if fl is not None:
+            filename = fl.name
+            #st.write(filename)
+            df = pd.read_csv(filename)
+        return df
+
+    options_form = st.form('options_form')
     # Crear los espacios para subor los datos
     user_name = options_form.text_input("Nombre")
     user_flastname = options_form.text_input("Apellido paterno")
@@ -46,17 +57,6 @@ def Ingresar_datos():
     user_phone = options_form.text_input("Telefono")
     user_type = options_form.text_input("Convocatoria")
     add_data = options_form.form_submit_button()
-    if add_data:
-        #cada variable nueva con la columna donde ira
-        new_data = {'Nombre': str(user_name),"Apellido paterno":str(user_flastname),"Apellido materno":str(user_slastname),
-                    "Correo Electronico":str(user_mail),"Telefono":int(user_phone),"Tipo de Convocatoria":str(user_type)}
-        new_row = pd.Series(new_data)
-        #df.append(new_row, ignore_index=True)
-        df.loc[len(df)] = new_data
-        #Nombre del archivo dentro del GitHub para actualizarlo
-        df.to_csv('Prueba_de_datos.csv',index=False)
-    # Agregar el botón de descarga del archivo CSV actualizado
-        df = pd.DataFrame(df)
     if not df.empty:
         csv_filename = 'Prueba_de_datos_actualizado.csv'
         csv_data = df.to_csv(index=False,encoding = 'latin1')
