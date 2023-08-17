@@ -29,6 +29,13 @@ def Ingresar_datos():
     import streamlit as st
 
     st.markdown(f"# {list(page_names_to_funcs.keys())[1]}")
+
+    fl = st.file_uploader(':file uploader: Sube un archivo',type=(["csv","txt","xlsx","xls"]))
+
+    if fl is not None:
+        filename = fl.name
+        #st.write(filename)
+        df = pd.read_csv(filename)
     st.sidebar.header('Opciones')
     options_form = st.sidebar.form('options_form')
     # Crear los espacios para subor los datos
