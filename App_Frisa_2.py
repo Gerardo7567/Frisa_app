@@ -74,4 +74,8 @@ def Ingresar_datos():
     if not df.empty:
         csv_filename = 'Prueba_de_datos_actualizado.csv'
         csv_data = df.to_csv(index=False,encoding = 'latin1')
-st.download_button(label="Descargar CSV Actualizado", data=csv_data, file_name=csv_filename)
+        st.download_button(label="Descargar CSV Actualizado", data=csv_data, file_name=csv_filename)
+page_names_to_funcs = {
+    "Inicio": intro,
+    "Ingresar datos": Ingresar_datos
+}
