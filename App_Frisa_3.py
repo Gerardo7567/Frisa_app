@@ -32,9 +32,13 @@ def Ingresar_datos():
 
 
     def save_results(results_df, button_press, kms_biked, location_visited):
-        results_df.at[button_press, 'kms_biked'] = kms_biked
-        results_df.at[button_press, 'location_visited'] = location_visited
-        results_df.to_csv('bike_to_work.csv', index=None)
+        results_df.at[button_press, 'Nombre'] = user_name
+        results_df.at[button_press, 'Apellido paterno'] = user_flastname
+        results_df.at[button_press, 'Apellido materno'] = user_slastname
+        results_df.at[button_press, 'Correo Electronico'] = user_mail
+        results_df.at[button_press, 'Telefono'] = user_phone
+        results_df.at[button_press, 'Tipo de Convocatoria'] = user_type
+        results_df.to_csv('Prueba_de_datos_new.csv', index=None)
         return None
     fl = st.file_uploader(':file uploader: Sube un archivo',type=(["csv","txt","xlsx","xls"]))
     @st.cache
@@ -59,10 +63,10 @@ def Ingresar_datos():
     user_slastname = options_form.text_input("Apellido materno")
     user_mail = options_form.text_input("Correo Electronico")
     user_phone = options_form.number_input("Telefono")
-    user_type = options_form.text_input("Convocatoria")
+    user_type = options_form.text_input("Tipo de Convocatoria")
     if st.button("Save your information"):
         button_press += 1
-        save_results(results_df, button_press, kms_biked, location_visited)
+        save_results(results_df, button_press, user_name, user_flastname,user_slastname,user_mail,user_phone,user_type)
     # track which row of results_df to write to
     with open("progress.txt", "w") as f:
             f.truncate()
