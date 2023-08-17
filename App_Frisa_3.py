@@ -48,7 +48,7 @@ def Ingresar_datos():
         return df
     results_df = load_data()
 
-    with open(filename, "r") as f:
+    with open("progress.txt", "r") as f:
         button_press = f.readline()  # starts as a string
         button_press = 0 if button_press == "" else int(button_press)
 
@@ -64,7 +64,7 @@ def Ingresar_datos():
         button_press += 1
         save_results(results_df, button_press, kms_biked, location_visited)
     # track which row of results_df to write to
-    with open(filename, "w") as f:
+    with open("progress.txt", "w") as f:
             f.truncate()
             f.write(f"{button_press}")
 
