@@ -53,6 +53,10 @@ def Ingresar_datos():
         return df
     results_df = load_data()     
 
+    with open("progress.txt", "r") as f:
+        button_press = f.readline()  # starts as a string
+        
+
     options_form = st.form('options_form')
     # Crear los espacios para subor los datos
     user_name = options_form.text_input("Nombre")
@@ -65,6 +69,9 @@ def Ingresar_datos():
     if add_data:
         save_results(results_df, button_press, user_name, user_flastname,user_slastname,user_mail,user_phone,user_type)
     # track which row of results_df to write to
+    with open("progress.txt", "w") as f:
+            f.truncate()
+            f.write(f"{button_press}")
     st.write(results_df)
     if not results_df.empty:
         csv_filename = 'Prueba_de_datos_actualizado.csv'
