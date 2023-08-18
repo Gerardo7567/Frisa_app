@@ -45,8 +45,8 @@ def Ingresar_datos():
     st.header('Archivo existente')
     st.write(df)
     
-    st.sidebar.header('Opciones')
-    options_form = st.sidebar.form('options_form')
+    st.header('Opciones')
+    options_form = st.form('options_form')
     # Crear los espacios para subor los datos
     user_name = options_form.text_input("Nombre")
     user_flastname = options_form.text_input("Apellido paterno")
