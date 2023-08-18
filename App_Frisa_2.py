@@ -74,3 +74,10 @@ page_names_to_funcs = {
     "Inicio": intro,
     "Ingresar datos": Ingresar_datos
 }
+
+page_names_to_funcs = {
+    "Inicio": intro,
+    "Ingresar datos": Ingresar_datos
+}
+demo_name = st.sidebar.selectbox("Choose a demo", page_names_to_funcs.keys())
+page_names_to_funcs[demo_name]()
